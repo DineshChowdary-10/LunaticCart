@@ -3,6 +3,7 @@ package service;
 import model.Product;
 import dao.ProductDAO;
 
+
 import java.util.List;
 
 public class ProductService {
@@ -12,6 +13,11 @@ public class ProductService {
 	public List<Product> getProducts()
 	{
 		return productDAO.getAllProducts();
+	}
+	
+	public Product getProductById(Integer id)
+	{
+		return productDAO.getProductById(id);
 	}
 
 }

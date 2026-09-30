@@ -23,19 +23,41 @@ import java.util.List;
 public class ProductServlet extends HttpServlet{
 	private ProductService productservice = new ProductService();
 	
-	protected void doGet(HttpServletRequest request ,HttpServletResponse response )
-	throws IOException, ServletException{
-		
-		List<Product> products = productservice.getProducts();
-		request.setAttribute("products",products);
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("products.jsp");
-		
-		dispatcher.forward(request, response);
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+	        throws IOException, ServletException {
+
+	    String id = request.getParameter("id");
+
+	    if (id == null) {
+
+	        List<Product> products = productservice.getProducts();
+
+	        request.setAttribute("products", products);
+
+	        RequestDispatcher dispatcher =
+	                request.getRequestDispatcher("products.jsp");
+
+	        dispatcher.forward(request, response);
+
+	    } else {
+
+	        Integer productId = Integer.parseInt(id);
+
+	        Product product = productservice.getProductById(productId);
+
+	        request.setAttribute("product", product);
+
+	        RequestDispatcher dispatcher =
+	                request.getRequestDispatcher("product-details.jsp");
+
+	        dispatcher.forward(request, response);
+	    }
+	}
 				
 		
 	}
 	
 	
 
-}
+

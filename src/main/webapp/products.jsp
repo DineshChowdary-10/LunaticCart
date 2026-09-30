@@ -10,10 +10,14 @@
 <body>
 <h1>Welcome to lunatic cart</h1>
 <h2>Available Products</h2>
-<c:forEach var="product" items = "${products}">
-<p>
-${product.name} -  ₹${product.price}
-</p>
+<c:forEach var="product" items="${products}">
+    <p>
+        ${product.name} - ₹${product.price}
+
+        <a href="products?id=${product.id}">
+            View Details
+        </a>
+    </p>
 </c:forEach>
 
 </body>
